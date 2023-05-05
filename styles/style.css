@@ -1,0 +1,84 @@
+h1{
+    color: rgb(57, 19, 92);
+    text-align: center;
+}
+
+.container-fluid{
+
+    display: flex;
+    width: 100%;
+    height: 100%;
+    
+}
+
+#list{
+    flex:5;
+    
+ background-color: rgba(170, 170, 170, 0.192); 
+    height: 800px;
+}
+
+#imageBack{
+    flex:5;
+    
+ background-color: rgba(7, 3, 17, 0.842); 
+    height: 800px;
+    background-image: url("https://cdn.pixabay.com/photo/2017/07/22/10/22/m2a3-bradley-2528325_960_720.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode:soft-light;
+}
+
+#form{
+    color: white;
+    flex:3; 
+    background-color: rgba(53, 49, 0, 0.644);
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    background-image: url("https://cdn.pixabay.com/photo/2017/08/01/14/42/knight-2565957_960_720.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode:soft-light;
+    
+    
+}
+label, input, select{
+    border-radius: 8px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.btn-primary{
+    margin-top: 10px;
+}
+
+.clickable-icon{
+font-size: 32px;
+cursor: pointer;
+
+}
+.icon-important{
+    color: rgb(255, 94, 0);
+}
+
+#txtColor{
+    width: 100%;
+    height: 30px;
+}
+
+#list{
+    display: flex;
+    align-items:self-start;
+    flex-direction: row-reverse;
+    justify-content:flex-start;
+    background-image: url(https://pixabay.com/photos/m2a3-bradley-united-states-army-2528325/);
+}
+.btn-list{
+
+    border: 2px solid black;
+    font-size: 14px;
+}
+
+
+/* control / for comments */
