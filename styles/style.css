@@ -7,15 +7,15 @@ h1{
 
     display: flex;
     width: 100%;
-    height: 100%;
-    
+    min-height: calc(100vh - 55px);
+    background-repeat: repeat-y;
 }
 
 #list{
     flex:5;
-    
+    display: grid;
  background-color: rgba(170, 170, 170, 0.192); 
-    height: 800px;
+
 }
 
 #imageBack{
@@ -24,9 +24,10 @@ h1{
  background-color: rgba(7, 3, 17, 0.842); 
     height: 800px;
     background-image: url("https://cdn.pixabay.com/photo/2017/07/22/10/22/m2a3-bradley-2528325_960_720.jpg");
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-size: cover;
     background-blend-mode:soft-light;
+    min-height: calc(100vh - 55px);
 }
 
 #form{
@@ -40,7 +41,7 @@ h1{
     background-repeat: no-repeat;
     background-size: cover;
     background-blend-mode:soft-light;
-    
+
     
 }
 label, input, select{
@@ -69,16 +70,47 @@ cursor: pointer;
 
 #list{
     display: flex;
-    align-items:self-start;
-    flex-direction: row-reverse;
-    justify-content:flex-start;
+     flex-direction: row-reverse;
+    justify-content:space-between;
     background-image: url(https://pixabay.com/photos/m2a3-bradley-united-states-army-2528325/);
+    height: 800px;
+
 }
 .btn-list{
 
     border: 2px solid black;
     font-size: 14px;
+    height: 50px;
 }
 
 
-/* control / for comments */
+
+#pendingTask{
+padding: 20px;
+width: 100%;
+}
+
+
+.taskDisplay{
+
+padding: 0 10px;
+flex: 1;
+}
+    
+.hide-initial{
+    display:none;
+}
+
+.wholeTask{
+    display: flex;
+    color: rgba(255, 255, 255, 0.918);
+    border: 3px solid rgba(216, 159, 4, 0.959);
+    background-color: rgba(255, 189, 6, 0.603);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px 0;  
+    border-right-width: 20px;
+
+}
+

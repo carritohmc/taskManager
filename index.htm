@@ -15,13 +15,13 @@
         <div id="imageBack">
         <section id="list">
             <button id="btnAddNew"  class="btn btn-warning btn-list">Task Form Toggle</button>
-            
+            <div id="pendingTask"></div>
 
           </div>
         </section>
         <section id="form">
             <div class="mb-3">
-
+                <div id="panelError" class="alert alert-warning hide-initial" role="alert">Please verify the task has a title, description and date</div>
                 <i class="fa-solid fa-circle-radiation clickable-icon" id="iImportant"></i>
             </div>
             <label>Title</label>
@@ -30,24 +30,25 @@
             
             <textarea name="" id="txtDescription" cols="30" rows="3"></textarea> 
             <label>Budget</label>
-            <input type="number" id="txtAge" placeholder="Enter the budget" value="" > 
+            <input type="number" id="txtBudget" placeholder="Enter the budget" value="" > 
             <label>Status</label>
             <select id="selStatus">
                 <option value=""disabled selected> --Select task status--</option>
                 <option value="new">New</option>
-                <option value="inProgress">In Progress</option>
+                <option value="in Progress">In Progress</option>
                 <option value="complete">Complete</option>
                 <option value="cancelled">Cancelled</option>
             </select>
             <label>Color</label>
             <input type="color" id="txtColor" placeholder="Select Color" value="" > 
             <label>Due Date</label>
-            <input type="date" id="txtDate" placeholder="select due date" value="" > 
-            <button class="btn btn-primary">Add Task</button>
+            <input type="date" id="selDate" placeholder="select due date" value="" > 
+            <button id="btnSave" class="btn btn-primary">Add Task</button>
         </section>
 
     </main>
     
+    <script src="scripts/task.js"> </script>
     <script src="scripts/taskManager.js"> </script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"> </script>
 </body>
