@@ -18,7 +18,7 @@ function toggleImportant(){
     
 }
 
-function saveTask(){
+async function saveTask(){
 const title= $("#txtTitle").val();
 const description= $("#txtDescription").val();
 const budget= $("#txtBudget").val();
@@ -37,12 +37,24 @@ if (!title || !description || !date) {
 
 if (!isValid) return;
 
-
-
-
 let task= new Task (isImportant, title, description,budget, status, color, date);
+// save to server
+let response= await fetch("https://fsdiapi.azurewebsites.net/api/tasks/", {
+    method: "POST",
+    headers: {
+        "Content-type":"application/json"
+    },
+    body: JSON.stringify(task),
+})
 
-displayTask(task)
+
+if(response.status===200) {
+    console.log(await response.json());
+    displayTask(task)
+} else {
+    alert("Error: task was not saved");
+    console.error(await response.json());
+}
 
 }
 
@@ -65,23 +77,25 @@ function formatBudget(budget) {
 
 function displayTask(task) {
 const syntax = `
-<div class ="wholeTask" style = "border-color:${task.color}">
-<div class = "taskIcon" style ="font-size:20px; margin-left:7px"> ${getIcon(task.important)}</div>
+<div id =${task._id} class ="wholeTask" style = "border-color:${task.color}">
+<div  class = "taskIcon" style ="font-size:20px; margin-left:7px"> ${getIcon(task.important)}</div>
 <div class = "taskDisplay" style ="flex:1">
 <h5>${task.title}</h5>
 </div>
-<div class = "taskDescription style ="flex:2">
+<div  class = "taskDescription style ="flex:2">
 <h6>${task.description}</h6>
 </div>
-<div class = "taskDisplay">
+<div  class = "taskDisplay">
 <h6>Budget: $${formatBudget(task.budget)}</h6>
 </div>
-<div class = "taskDisplay">
+<div  class = "taskDisplay">
 <h6>status: ${task.status}</h6>
 </div>
-<div class = "taskDisplay">
+<div  class = "taskDisplay">
 <h6>due date:${task.date}</h6>
 </div>
+<i onclick="deleteTask('${task._id}')"class="fa-regular fa-trash-can"></i>
+
 </div>
 
 `
@@ -90,6 +104,21 @@ const syntax = `
 $("#pendingTask").append(syntax);
 
 }
+
+async function deleteTask(id){
+    console.log(id);
+    const response= await fetch(`https://fsdiapi.azurewebsites.net/api/tasks/${id}/`, {
+        method:"DELETE"
+    });
+    if (response.ok) {
+        console.log("deleted");
+        $("#"+id).remove();
+    } else {
+        alert("Error: Task was not deleted")
+    }
+
+}
+
 
 function getIcon(important) {
     if (important){
@@ -115,7 +144,31 @@ $('#btnAddNew').click(function(){
 })
 }
 
+async function loadTasks(){
 
+    const response= await fetch("https://fsdiapi.azurewebsites.net/api/tasks/");
+    if (response.ok) {
+        const allTasks= await response.json();
+        for (let i=0; i<allTasks.length; i++){
+             const task = allTasks[i];
+             if (task.name=="Felix") {
+
+                 displayTask(task);
+             }
+        }
+    } else {
+        alert("Error: tasks were not loaded");
+    } 
+    
+    
+}
+
+
+async function testRequest(){
+
+    const response= await fetch("https://fsdiapi.azurewebsites.net/");
+
+}
 
 
 
@@ -124,9 +177,11 @@ function init(){
     $("#iImportant").click(toggleImportant);
     $("#btnSave").click(saveTask);
     hideTaskForm();
-
+    //load task function
+    loadTasks();
 
 }
 
 window.onload=init; 
 
+// https://fsdiapi.azurewebsites.net/
